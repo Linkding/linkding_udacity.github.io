@@ -2,7 +2,7 @@
 
 ## 获取此项目方式
 ```
-git clone
+git clone git@github.com:Linkding/udacity.git
 ```
 或者通过download此项目代码文件到本地
 
