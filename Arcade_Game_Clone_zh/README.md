@@ -14,3 +14,8 @@ git clone git@github.com:Linkding/udacity.git
 * 使用键盘的方向键控制玩家移动方向；
 * 敌人每行移动速率不一，玩家每次与敌人碰撞会回到起始位置；
 * 成功通过后，会弹窗告知，并重设玩家到起始位置；
+
+
+参考资料：
+* [linesh同学的超详细文档，带我突破作业心理关卡](http://discussions.youdaxue.com/t/classic-arcade-game/36088)
+* [个人完成过程及任务分解](https://github.com/Linkding/udacity/blob/master/Arcade_Game_Clone_zh/task_list.md)
