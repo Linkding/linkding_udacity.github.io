@@ -24,7 +24,6 @@ Enemy.prototype.update = function(dt) {
 
 // 此为游戏必须的函数，用来在屏幕上画出敌人，
 Enemy.prototype.render = function() {
-
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
 };
@@ -37,16 +36,20 @@ var  Player = function (x,y) {
   this.y = y;
 
   this.sprite = 'images/char-boy.png';
-  //this.star = 'images/star.png';
 }
 
 Player.prototype.update = function (Enemy) {
-  console.log(`player.x: ${player.x},player.y: ${player.y}`)
+  Player_w = 90;
+  Player_h = 75;
+  enemy_w = 90;
+  enemy_h = 75;
+  console.log(`player.x: ${player.x},player.y: ${player.y}`);
   // 碰撞测试
-  len = allEnemies.length
+  len = allEnemies.length;
   for (var i = 0;i < len; i++)
   {
-    if (this.y  === allEnemies[i].y && 0 < this.x - allEnemies[i].x &&  this.x - allEnemies[i].x  < 75)
+    //if (this.y  === allEnemies[i].y && 0 < this.x - allEnemies[i].x &&  this.x - allEnemies[i].x  < 75)
+    if (this.x < allEnemies[i].x + enemy_w && this.x + Player_w > allEnemies[i].x && this.y < allEnemies[i].y + enemy_h && Player_h + this.y > allEnemies[i].y)
     {
        player.y = 83 * 3 + 75
        player.x = 202
@@ -59,23 +62,16 @@ Player.prototype.update = function (Enemy) {
   x_up = 407 //最右沿
   x_low = 0//最左沿
   // 过河成功显示
-  if (this.y <= y_up) {
-    //player.y = y_up
-    /*setTimeout(function()
-    {
-      console.log("THIS IS");
-    }, 6000);*/
-    player.y = 83 * 3 + 75
-    player.x = 202
-    var img = new Image();
+  if (this.y < y_up) {
+    player.y = y_up
+    //player.y = 83 * 3 + 75
+    //player.x = 202
+    /*var img = new Image();
     img.src = "images/star.png";
     img.onload = function () {
       //ctx.drawImage(img,0,0)
       alert("恭喜你，过河成功！");
-    }
-    /*ctx.fillStyle = 'red'
-    ctx.font = "36px Impact"
-    ctx.fillText('恭喜你：' ,0, 83 * 0 + 75)*/
+    }*/
   }
   // player防止出框
   else if (this.y > y_low) {
@@ -102,6 +98,10 @@ Player.prototype.update = function (Enemy) {
 
 Player.prototype.render = function (){
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  // 过河成功显示星星
+  if (this.y === -8){
+    ctx.drawImage(Resources.get("images/Star.png"), 0 , 0);
+  }
 }
 
 Player.prototype.handleInput = function(movement){
@@ -115,9 +115,10 @@ Player.prototype.handleInput = function(movement){
 // 现在实例化你的所有对象
 // 把所有敌人的对象都放进一个叫 allEnemies 的数组里面
 // 把玩家对象放进一个叫 player 的变量里面
-var allEnemies = [new Enemy(0, 83 * 0 + 75,120),new Enemy(0, 83 * 1 + 75,170),new Enemy(0, 83 * 2 + 75,60)]
+var START_X = 202
+var allEnemies = [new Enemy(-START_X, 83 * 0 + 75,120),new Enemy(-START_X, 83 * 1 + 75,170),new Enemy(-START_X, 83 * 2 + 75,60)]
 //var allEnemies = [new Enemy(0, 83 * 0 + 75,40)]
-var player = new Player(202, 83 * 3 + 75)
+var player = new Player(START_X, 83 * 3 + 75)
 //allEnemies.prototype.checkCollision()
 
 
