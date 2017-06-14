@@ -14,6 +14,7 @@
    * ~~碰撞检测~~
     * 代码写在什么位置，如何调用（自动生效）？
       * 碰撞后，如何让player回到初始位置？
+        * 第一次老师review后，提供的资料 [参考](https://aotu.io/notes/2017/02/16/2d-collision-detection/)
    * ~~虫子重复跑位~~
 
 
@@ -22,6 +23,9 @@
     * ~~判断过河完成；~~
     * 奖励图显示；
       * 未完成，用alert弹窗替代
+      * 第一次老师review后，提示了实现方法
+        >在 engine.js 里面的 Resources.load 方法内添加上星星的图片 'images/Star.png'。在 Player.prototype.render 方法内设置一个条件判断，当满足条件时调用下方渲染函数来显示星星ctx.drawImage(Resources.get("images/Star.png"), 0 , 0);
+
     * 奖励数据加总;
       * 未完成
 
