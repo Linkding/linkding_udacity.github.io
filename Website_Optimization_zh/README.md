@@ -11,9 +11,9 @@
 * 图片压缩
   * 2次压缩`img/profilepic.jpg`图片大小；
 * css文件使用media属性
-  * 将`style-min.css`文件的内容直接内连到html文件，加快页面渲染;
+  * 将`style-min.css`文件的内容直接内联到index.html文件，加快页面渲染;
   * 设置媒体查询避免加载一些不太必要的 CSS 资源，media='print';
-* js文件异步加载
+* js文件异步加载(async)
 
 * google font异步加载
   * 使用Webfont.load方式，应对[FOUT](http://help.typekit.com/customer/portal/articles/6852)
