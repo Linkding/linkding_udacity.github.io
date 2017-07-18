@@ -7,9 +7,9 @@ html {
 }
 body { margin: 0; font-size: 14px; line-height: 1.61; font-weight: 400; }
 body, button, input, select, textarea { font-family:  'Open Sans', sans-serif; color: #333; }
-/*.wf-active body {
-    font-family: 'Open Sans';
-}*/
+.wf-loading html { font-family: 'Simsun';}
+.wf-active html {font-family: 'Open Sans';}
+
 a { color: #12C; }
 a:visited { color: #61C; }
 a:focus { outline: thin dotted; }
