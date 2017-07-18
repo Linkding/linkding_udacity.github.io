@@ -5,47 +5,9 @@
 #### 优化尝试：
 * 压缩图片
 
-##### 优化css
-* 使用media属性
+# 检查清单
 
-
-增加2分
-```
-<link href="css/print.css" rel="stylesheet" media="print">
-```
-
-##### 优化渲染路径js
-* 进行异步处理
-```
-<script async src="http://www.google-analytics.com/analytics.js"></script>
-```
-
----
->cnpm install --save-dev jshint gulp-minify-css gulp-uglify gulp-jshint gulp-rename
----
-提问：将google font字体进行异步加载，但是pagespeed分数反而降低
-
-在尚未更改前，测试pagespeed分数，移动／桌面分数：72/88。
-
-更改代码
-```
-<script  src="https://staticfile.qnssl.com/webfont/1.6.16/webfontloader.js"></script>
-<script>
-  WebFont.load({
-    google: {
-      families: ['Open Sans'],
-      api: 'https://fonts.lug.ustc.edu.cn/css'
-      //api: 'https://lug.ustc.edu.cn/wiki/lug/services/googlefonts'
-      //api: 'https://cdn.moefont.com/fonts/css'
-    }
-  });
-</script>
-```
-测试的pagespeed分数，移动／桌面：59/79
-
-PS:css未做更改。
-
-
-个人推测：使用的webfont是七牛的cdn，难道这个因为在国内，变成瓶颈？
-
-求搭救。
+### 压缩图片
+  * [可以压缩和设置长宽](http://www.reduceimages.com/)
+  * [tinypng](https://tinypng.com/)
+  * []()
