@@ -19,7 +19,7 @@
     <div class="">
       <button type="" name="button" data-bind="click: toggleFilter">fliter</button>
       <table>
-        <tbody data-bind="foreach: locationTable, visible: initsatus">
+        <tbody data-bind="foreach: addressTable, visible: initsatus">
           <tr >
             <td data-bind="text: name"></td>
           </tr>
@@ -44,7 +44,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQx3fGS7usL4coca5R36tRuvNTIK72iAY&callback=initMap">
     </script>
     <script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
-    <script src="js/knockout.js"></script>
+    <script src="https://cdn.bootcss.com/knockout/3.2.0/knockout-debug.js"></script>
     <script src="js/main.js">
     </script>
   </body>

@@ -1,76 +1,100 @@
-// one location
-function locationModel (name,location) {
+// one address
+function addressModel (name,lat,lng) {
   var self = this;
-
   self.name = ko.observable(name);
-  self.location = ko.observable(location);
+  self.lat = ko.observable(lat);
+  self.lng = ko.observable(lng);
 };
 
 // viewmodel
-function locationView()  {
+function addressView()  {
   var self = this;
 
-  self.locationName = [
+  self.addressName = [
     {name: '太古汇'},
     {name: '正佳'}
   ];
 
-  self.location = [
+  self.address = [
     {lat: 23.136088, lng: 113.332012},
     {lat: 24.136088, lng: 115.332012}
   ];
 
-  self.locationTable = ko.observable([
-    new locationModel(self.locationName[0].name,self.location[0]),
-    new locationModel(self.locationName[1].name,self.location[1])
+  self.addressTable = ko.observable([
+    new addressModel(self.addressName[0].name,self.address[0]),
+    new addressModel(self.addressName[1].name,self.address[1])
   ]);
 
-  // toggle ,show all location list
+  // toggle ,show all address list
   self.initsatus = ko.observable(false);
 
   self.toggleFilter = function (){
     self.initsatus(!self.initsatus());
+  };
+
+  // search
+  // self.search = function (){
+  //   self.alladdress = ko.observableArray("");
+  //   self.query = ko.observable("");
+  //   self.filteredaddress = ko.computed(function () {
+  //       var filter = self.query().toLowerCase();
+  //
+  //       if (!filter) {
+  //           return self.alladdress();
+  //       }
+  //       else {
+  //           return ko.utils.arrayFilter(self.alladdress(), function (item) {
+  //               return item.name().toLowerCase().indexOf(filter) !== -1;
+  //           });
+  //       }
+  //   });
   }
+  // console.log(self.alladdress)
+  // search.alladdress.push(new addressModel('太古汇', 23, 24));
+
 }
 
-ko.applyBindings(new locationView());
+ko.applyBindings(new addressView());
+
 // search
-function search() {
-    var self = this;
-    self.allLocation = ko.observableArray("");
-    self.query = ko.observable("");
-    self.filteredLocation = ko.computed(function () {
-        var filter = self.query().toLowerCase();
+// function search() {
+//     var self = this;
+//     self.alladdress = ko.observableArray("");
+//     self.query = ko.observable("");
+//     self.filteredaddress = ko.computed(function () {
+//         var filter = self.query().toLowerCase();
+//
+//         if (!filter) {
+//             return self.alladdress();
+//         }
+//         else {
+//             return ko.utils.arrayFilter(self.alladdress(), function (item) {
+//                 return item.name().toLowerCase().indexOf(filter) !== -1;
+//             });
+//         }
+//     });
+//
+// };
 
-        if (!filter) {
-            return self.allLocation();
-        }
-        else {
-            return ko.utils.arrayFilter(self.allLocation(), function (item) {
-                return item.name().toLowerCase().indexOf(filter) !== -1;
-            });
-        }
-    });
-};
 
+// function loadData(){
+//   var self = this;
+//   self.addressName = [
+//     {name: '太古汇'},
+//     {name: '正佳'}
+//   ];
+//
+//   self.address = [
+//     {lat: 23.136088, lng: 113.332012},
+//     {lat: 24.136088, lng: 115.332012}
+//   ];
+//
+//   search().alladdress.push('nihao',23,24);
+//   //self.search.alladdress.push(new addressModel('太古汇', 23, 24));
+// };
 
-function loadData(){
-  self.locationName = [
-    {name: '太古汇'},
-    {name: '正佳'}
-  ];
-
-  self.location = [
-    {lat: 23.136088, lng: 113.332012},
-    {lat: 24.136088, lng: 115.332012}
-  ];
-
-  search().allLocation.push('nihao');
-  // search.allLocation.push(new locationModel(self.locationName[1].name, self.location[1]));
-};
-
-$(document).ready(function(){
-  loadData();
-  ko.applyBindings(new locationView());
-  ko.applyBindings(new search());
-});
+// $(document).ready(function(){
+//   loadData();
+//   ko.applyBindings(new addressView());
+//   ko.applyBindings(new search());
+// });
