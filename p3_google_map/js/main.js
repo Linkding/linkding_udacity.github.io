@@ -1,100 +1,67 @@
-// one address
-function addressModel (name,lat,lng) {
-  var self = this;
-  self.name = ko.observable(name);
-  self.lat = ko.observable(lat);
-  self.lng = ko.observable(lng);
-};
+function address(Name, lat, lng) {
+    this.Name = ko.observable(Name);
+    this.lat = ko.observable(lat);
+    this.lng = ko.observable(lng);
+}
 
-// viewmodel
-function addressView()  {
-  var self = this;
+function model() {
+    var self = this;
+    self.addresss = ko.observableArray("");
+    self.query = ko.observable("");
+    self.filteredaddresss = ko.computed(function () {
+        var filter = self.query().toLowerCase();
 
-  self.addressName = [
-    {name: '太古汇'},
-    {name: '正佳'}
-  ];
+        if (!filter) {
+            return self.addresss();
+        } else {
+            return ko.utils.arrayFilter(self.addresss(), function (item) {
+                return item.Name().toLowerCase().indexOf(filter) !== -1;
+            });
+        }
+        
+    });
 
-  self.address = [
-    {lat: 23.136088, lng: 113.332012},
-    {lat: 24.136088, lng: 115.332012}
-  ];
+    self.pasentAddress = ko.observable();
 
-  self.addressTable = ko.observable([
-    new addressModel(self.addressName[0].name,self.address[0]),
-    new addressModel(self.addressName[1].name,self.address[1])
-  ]);
+    self.showPasentAddress = function(place){
+      hideListings()
+      // console.log(self.addresss().Name)
+      // address Name push into a array
+      var addressNameArray = [];
+      for (var i = 0; i < locations.length; i++) {
+        addressNameArray.push(locations[i].title)
+      }
+      var i  = addressNameArray.indexOf(place.Name());
+      var bounds = new google.maps.LatLngBounds(locations[i].position);
+      // Extend the boundaries of the map for each marker and display the marker
+      // for (var i = 0; i <= indexofAddressNum.length; i++) {
+      // map = new google.maps.Map(document.getElementById('map'), {
+      //   center: {lat: 23.136088, lng: 113.332012},
+      //   zoom: 13,
+      //   // styles: styles,
+      //   mapTypeControl: false
+      // });
+      markers[i].setMap(map);
+      // bounds.extend(markers[i].position);
+      // map.fitBounds(bounds);
 
-  // toggle ,show all address list
-  self.initsatus = ko.observable(false);
-
-  self.toggleFilter = function (){
-    self.initsatus(!self.initsatus());
-  };
-
-  // search
-  // self.search = function (){
-  //   self.alladdress = ko.observableArray("");
-  //   self.query = ko.observable("");
-  //   self.filteredaddress = ko.computed(function () {
-  //       var filter = self.query().toLowerCase();
-  //
-  //       if (!filter) {
-  //           return self.alladdress();
-  //       }
-  //       else {
-  //           return ko.utils.arrayFilter(self.alladdress(), function (item) {
-  //               return item.name().toLowerCase().indexOf(filter) !== -1;
-  //           });
-  //       }
-  //   });
-  }
-  // console.log(self.alladdress)
-  // search.alladdress.push(new addressModel('太古汇', 23, 24));
+      };
 
 }
 
-ko.applyBindings(new addressView());
 
-// search
-// function search() {
-//     var self = this;
-//     self.alladdress = ko.observableArray("");
-//     self.query = ko.observable("");
-//     self.filteredaddress = ko.computed(function () {
-//         var filter = self.query().toLowerCase();
-//
-//         if (!filter) {
-//             return self.alladdress();
-//         }
-//         else {
-//             return ko.utils.arrayFilter(self.alladdress(), function (item) {
-//                 return item.name().toLowerCase().indexOf(filter) !== -1;
-//             });
-//         }
-//     });
-//
-// };
+var mymodel = new model();
 
+$(document).ready(function () {
+    loaddata();
+    ko.applyBindings(mymodel);
+});
 
-// function loadData(){
-//   var self = this;
-//   self.addressName = [
-//     {name: '太古汇'},
-//     {name: '正佳'}
-//   ];
-//
-//   self.address = [
-//     {lat: 23.136088, lng: 113.332012},
-//     {lat: 24.136088, lng: 115.332012}
-//   ];
-//
-//   search().alladdress.push('nihao',23,24);
-//   //self.search.alladdress.push(new addressModel('太古汇', 23, 24));
-// };
-
-// $(document).ready(function(){
-//   loadData();
-//   ko.applyBindings(new addressView());
-//   ko.applyBindings(new search());
-// });
+function loaddata() {
+    mymodel.addresss.push(new address(locations[0].title, locations[0].location.lat, locations[0].location.lng));
+    mymodel.addresss.push(new address(locations[1].title, locations[1].location.lat, locations[1].location.lng));
+    mymodel.addresss.push(new address(locations[2].title, locations[2].location.lat, locations[2].location.lng));
+    mymodel.addresss.push(new address(locations[3].title, locations[3].location.lat, locations[3].location.lng));
+    mymodel.addresss.push(new address(locations[4].title, locations[4].location.lat, locations[4].location.lng));
+    mymodel.addresss.push(new address(locations[5].title, locations[5].location.lat, locations[5].location.lng));
+}
